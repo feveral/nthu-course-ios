@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uKP-3j-KAH">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--課表-->
+        <scene sceneID="8Qe-3L-IR7">
+            <objects>
+                <navigationController storyboardIdentifier="CurriculumPage" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uKP-3j-KAH" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="課表" id="3Bm-TU-cPx"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mF4-DN-Y8t">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="deZ-vB-IIs" kind="relationship" relationship="rootViewController" id="CYP-Nb-aZv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sJG-6z-zYS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="257" y="-149"/>
+        </scene>
+        <!--Curriculum Page Controller-->
+        <scene sceneID="QOW-wq-e2u">
+            <objects>
+                <viewController id="deZ-vB-IIs" customClass="CurriculumPageController" customModule="nthu_campus" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="C3k-r5-JfZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="eLq-tF-nZy"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="BMd-5L-1cP"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PYL-RH-NMo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1357.9710144927537" y="-149.33035714285714"/>
+        </scene>
+    </scenes>
+</document>

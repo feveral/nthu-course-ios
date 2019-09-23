@@ -1,0 +1,6 @@
+framework module Pods_nthu_campusUITests {
+  umbrella header "Pods-nthu-campusUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

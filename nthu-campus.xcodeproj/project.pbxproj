@@ -3,17 +3,29 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C4C9F1E6BDBE35FE7DAFE19 /* Pods_nthu_campusUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C949F43B1C333E4C2B303DBA /* Pods_nthu_campusUITests.framework */; };
+		B00A8592233612870076F5C7 /* ilmsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00A8591233612870076F5C7 /* ilmsService.swift */; };
+		B00A8596233631C10076F5C7 /* ilmsLoginInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00A8595233631C10076F5C7 /* ilmsLoginInfo.swift */; };
+		B00A8598233639150076F5C7 /* header.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00A8597233639150076F5C7 /* header.swift */; };
+		B00A859B233647590076F5C7 /* serviceUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00A859A233647590076F5C7 /* serviceUtils.swift */; };
+		B00A859D233699B50076F5C7 /* courseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00A859C233699B50076F5C7 /* courseService.swift */; };
 		B0B2572A2329FDBB00EC99A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B257292329FDBB00EC99A8 /* AppDelegate.swift */; };
-		B0B2572C2329FDBB00EC99A8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B2572B2329FDBB00EC99A8 /* ViewController.swift */; };
-		B0B2572F2329FDBB00EC99A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0B2572D2329FDBB00EC99A8 /* Main.storyboard */; };
+		B0B2572C2329FDBB00EC99A8 /* MainPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B2572B2329FDBB00EC99A8 /* MainPageController.swift */; };
+		B0B2572F2329FDBB00EC99A8 /* MainPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0B2572D2329FDBB00EC99A8 /* MainPage.storyboard */; };
 		B0B257312329FDBE00EC99A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0B257302329FDBE00EC99A8 /* Assets.xcassets */; };
 		B0B257342329FDBE00EC99A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0B257322329FDBE00EC99A8 /* LaunchScreen.storyboard */; };
 		B0B2573F2329FDBE00EC99A8 /* nthu_campusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B2573E2329FDBE00EC99A8 /* nthu_campusTests.swift */; };
 		B0B2574A2329FDBE00EC99A8 /* nthu_campusUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B257492329FDBE00EC99A8 /* nthu_campusUITests.swift */; };
+		B0B2575B232A025100EC99A8 /* CurriculumPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B2575A232A025100EC99A8 /* CurriculumPageController.swift */; };
+		B0B2575D232A027D00EC99A8 /* CurriculumPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0B2575C232A027D00EC99A8 /* CurriculumPage.storyboard */; };
+		B0B25760232A072000EC99A8 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B2575F232A072000EC99A8 /* Course.swift */; };
+		B0B25763232A2B5500EC99A8 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B25762232A2B5500EC99A8 /* APIRequest.swift */; };
+		F76F1ADAD3F393978E64558B /* Pods_nthu_campusTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E1C224461F9140DD9887F8D /* Pods_nthu_campusTests.framework */; };
+		FC92EEB337428CF3C111712A /* Pods_nthu_campus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F18828EBD767281D45D42375 /* Pods_nthu_campus.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,10 +46,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E00096E1B055A02A667D89E /* Pods-nthu-campus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nthu-campus.release.xcconfig"; path = "Target Support Files/Pods-nthu-campus/Pods-nthu-campus.release.xcconfig"; sourceTree = "<group>"; };
+		2B7FC86AD02DFD3BD4268279 /* Pods-nthu-campusUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nthu-campusUITests.release.xcconfig"; path = "Target Support Files/Pods-nthu-campusUITests/Pods-nthu-campusUITests.release.xcconfig"; sourceTree = "<group>"; };
+		4A1C7CE510D2A15EE210A9DC /* Pods-nthu-campusTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nthu-campusTests.debug.xcconfig"; path = "Target Support Files/Pods-nthu-campusTests/Pods-nthu-campusTests.debug.xcconfig"; sourceTree = "<group>"; };
+		816B3BE017EDFC1244989061 /* Pods-nthu-campusTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nthu-campusTests.release.xcconfig"; path = "Target Support Files/Pods-nthu-campusTests/Pods-nthu-campusTests.release.xcconfig"; sourceTree = "<group>"; };
+		9E1C224461F9140DD9887F8D /* Pods_nthu_campusTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nthu_campusTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B00A8591233612870076F5C7 /* ilmsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ilmsService.swift; sourceTree = "<group>"; };
+		B00A8595233631C10076F5C7 /* ilmsLoginInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ilmsLoginInfo.swift; sourceTree = "<group>"; };
+		B00A8597233639150076F5C7 /* header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = header.swift; sourceTree = "<group>"; };
+		B00A859A233647590076F5C7 /* serviceUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = serviceUtils.swift; sourceTree = "<group>"; };
+		B00A859C233699B50076F5C7 /* courseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = courseService.swift; sourceTree = "<group>"; };
 		B0B257262329FDBB00EC99A8 /* nthu-campus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "nthu-campus.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0B257292329FDBB00EC99A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B0B2572B2329FDBB00EC99A8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B0B2572E2329FDBB00EC99A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B0B2572B2329FDBB00EC99A8 /* MainPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageController.swift; sourceTree = "<group>"; };
+		B0B2572E2329FDBB00EC99A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainPage.storyboard; sourceTree = "<group>"; };
 		B0B257302329FDBE00EC99A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B0B257332329FDBE00EC99A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B0B257352329FDBE00EC99A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -47,6 +69,14 @@
 		B0B257452329FDBE00EC99A8 /* nthu-campusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "nthu-campusUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0B257492329FDBE00EC99A8 /* nthu_campusUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nthu_campusUITests.swift; sourceTree = "<group>"; };
 		B0B2574B2329FDBE00EC99A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B0B2575A232A025100EC99A8 /* CurriculumPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurriculumPageController.swift; sourceTree = "<group>"; };
+		B0B2575C232A027D00EC99A8 /* CurriculumPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CurriculumPage.storyboard; sourceTree = "<group>"; };
+		B0B2575F232A072000EC99A8 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
+		B0B25762232A2B5500EC99A8 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
+		C746040B7004E19E6EB25A08 /* Pods-nthu-campus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nthu-campus.debug.xcconfig"; path = "Target Support Files/Pods-nthu-campus/Pods-nthu-campus.debug.xcconfig"; sourceTree = "<group>"; };
+		C8DA1AC977102FC7CF981F60 /* Pods-nthu-campusUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nthu-campusUITests.debug.xcconfig"; path = "Target Support Files/Pods-nthu-campusUITests/Pods-nthu-campusUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		C949F43B1C333E4C2B303DBA /* Pods_nthu_campusUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nthu_campusUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F18828EBD767281D45D42375 /* Pods_nthu_campus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nthu_campus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC92EEB337428CF3C111712A /* Pods_nthu_campus.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F76F1ADAD3F393978E64558B /* Pods_nthu_campusTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,12 +100,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C4C9F1E6BDBE35FE7DAFE19 /* Pods_nthu_campusUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A70FDA40181627AEC7718B2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C746040B7004E19E6EB25A08 /* Pods-nthu-campus.debug.xcconfig */,
+				0E00096E1B055A02A667D89E /* Pods-nthu-campus.release.xcconfig */,
+				4A1C7CE510D2A15EE210A9DC /* Pods-nthu-campusTests.debug.xcconfig */,
+				816B3BE017EDFC1244989061 /* Pods-nthu-campusTests.release.xcconfig */,
+				C8DA1AC977102FC7CF981F60 /* Pods-nthu-campusUITests.debug.xcconfig */,
+				2B7FC86AD02DFD3BD4268279 /* Pods-nthu-campusUITests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		B0B2571D2329FDBB00EC99A8 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +127,8 @@
 				B0B2573D2329FDBE00EC99A8 /* nthu-campusTests */,
 				B0B257482329FDBE00EC99A8 /* nthu-campusUITests */,
 				B0B257272329FDBB00EC99A8 /* Products */,
+				2A70FDA40181627AEC7718B2 /* Pods */,
+				F8C5BFC4B6DEBC8CB824A38D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,9 +145,12 @@
 		B0B257282329FDBB00EC99A8 /* nthu-campus */ = {
 			isa = PBXGroup;
 			children = (
+				B0B25761232A2B3F00EC99A8 /* services */,
+				B0B25758232A01D200EC99A8 /* view */,
+				B0B25757232A01BE00EC99A8 /* model */,
 				B0B257292329FDBB00EC99A8 /* AppDelegate.swift */,
-				B0B2572B2329FDBB00EC99A8 /* ViewController.swift */,
-				B0B2572D2329FDBB00EC99A8 /* Main.storyboard */,
+				B0B2572B2329FDBB00EC99A8 /* MainPageController.swift */,
+				B0B2572D2329FDBB00EC99A8 /* MainPage.storyboard */,
 				B0B257302329FDBE00EC99A8 /* Assets.xcassets */,
 				B0B257322329FDBE00EC99A8 /* LaunchScreen.storyboard */,
 				B0B257352329FDBE00EC99A8 /* Info.plist */,
@@ -125,6 +176,46 @@
 			path = "nthu-campusUITests";
 			sourceTree = "<group>";
 		};
+		B0B25757232A01BE00EC99A8 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				B0B2575F232A072000EC99A8 /* Course.swift */,
+				B00A8595233631C10076F5C7 /* ilmsLoginInfo.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		B0B25758232A01D200EC99A8 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				B0B2575A232A025100EC99A8 /* CurriculumPageController.swift */,
+				B0B2575C232A027D00EC99A8 /* CurriculumPage.storyboard */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		B0B25761232A2B3F00EC99A8 /* services */ = {
+			isa = PBXGroup;
+			children = (
+				B0B25762232A2B5500EC99A8 /* APIRequest.swift */,
+				B00A8591233612870076F5C7 /* ilmsService.swift */,
+				B00A8597233639150076F5C7 /* header.swift */,
+				B00A859A233647590076F5C7 /* serviceUtils.swift */,
+				B00A859C233699B50076F5C7 /* courseService.swift */,
+			);
+			path = services;
+			sourceTree = "<group>";
+		};
+		F8C5BFC4B6DEBC8CB824A38D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F18828EBD767281D45D42375 /* Pods_nthu_campus.framework */,
+				9E1C224461F9140DD9887F8D /* Pods_nthu_campusTests.framework */,
+				C949F43B1C333E4C2B303DBA /* Pods_nthu_campusUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +223,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B0B2574E2329FDBE00EC99A8 /* Build configuration list for PBXNativeTarget "nthu-campus" */;
 			buildPhases = (
+				10266EE616739C8937FAD39B /* [CP] Check Pods Manifest.lock */,
 				B0B257222329FDBB00EC99A8 /* Sources */,
 				B0B257232329FDBB00EC99A8 /* Frameworks */,
 				B0B257242329FDBB00EC99A8 /* Resources */,
+				D9DF692D745E98C0D11B3C59 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -149,6 +242,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B0B257512329FDBE00EC99A8 /* Build configuration list for PBXNativeTarget "nthu-campusTests" */;
 			buildPhases = (
+				1038BBF0F4D6E302532783CE /* [CP] Check Pods Manifest.lock */,
 				B0B257362329FDBE00EC99A8 /* Sources */,
 				B0B257372329FDBE00EC99A8 /* Frameworks */,
 				B0B257382329FDBE00EC99A8 /* Resources */,
@@ -167,6 +261,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B0B257542329FDBE00EC99A8 /* Build configuration list for PBXNativeTarget "nthu-campusUITests" */;
 			buildPhases = (
+				03915D68EA3CE71FAB78EFAD /* [CP] Check Pods Manifest.lock */,
 				B0B257412329FDBE00EC99A8 /* Sources */,
 				B0B257422329FDBE00EC99A8 /* Frameworks */,
 				B0B257432329FDBE00EC99A8 /* Resources */,
@@ -229,9 +324,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0B2575D232A027D00EC99A8 /* CurriculumPage.storyboard in Resources */,
 				B0B257342329FDBE00EC99A8 /* LaunchScreen.storyboard in Resources */,
 				B0B257312329FDBE00EC99A8 /* Assets.xcassets in Resources */,
-				B0B2572F2329FDBB00EC99A8 /* Main.storyboard in Resources */,
+				B0B2572F2329FDBB00EC99A8 /* MainPage.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,13 +347,107 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		03915D68EA3CE71FAB78EFAD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-nthu-campusUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		10266EE616739C8937FAD39B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-nthu-campus-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1038BBF0F4D6E302532783CE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-nthu-campusTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D9DF692D745E98C0D11B3C59 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-nthu-campus/Pods-nthu-campus-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-nthu-campus/Pods-nthu-campus-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-nthu-campus/Pods-nthu-campus-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B0B257222329FDBB00EC99A8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0B2572C2329FDBB00EC99A8 /* ViewController.swift in Sources */,
+				B00A8598233639150076F5C7 /* header.swift in Sources */,
+				B00A8596233631C10076F5C7 /* ilmsLoginInfo.swift in Sources */,
+				B0B25760232A072000EC99A8 /* Course.swift in Sources */,
+				B0B2572C2329FDBB00EC99A8 /* MainPageController.swift in Sources */,
+				B0B2575B232A025100EC99A8 /* CurriculumPageController.swift in Sources */,
+				B0B25763232A2B5500EC99A8 /* APIRequest.swift in Sources */,
+				B00A8592233612870076F5C7 /* ilmsService.swift in Sources */,
 				B0B2572A2329FDBB00EC99A8 /* AppDelegate.swift in Sources */,
+				B00A859D233699B50076F5C7 /* courseService.swift in Sources */,
+				B00A859B233647590076F5C7 /* serviceUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,12 +483,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		B0B2572D2329FDBB00EC99A8 /* Main.storyboard */ = {
+		B0B2572D2329FDBB00EC99A8 /* MainPage.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				B0B2572E2329FDBB00EC99A8 /* Base */,
 			);
-			name = Main.storyboard;
+			name = MainPage.storyboard;
 			sourceTree = "<group>";
 		};
 		B0B257322329FDBE00EC99A8 /* LaunchScreen.storyboard */ = {
@@ -430,6 +620,7 @@
 		};
 		B0B2574F2329FDBE00EC99A8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C746040B7004E19E6EB25A08 /* Pods-nthu-campus.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -448,6 +639,7 @@
 		};
 		B0B257502329FDBE00EC99A8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0E00096E1B055A02A667D89E /* Pods-nthu-campus.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -466,6 +658,7 @@
 		};
 		B0B257522329FDBE00EC99A8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4A1C7CE510D2A15EE210A9DC /* Pods-nthu-campusTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -487,6 +680,7 @@
 		};
 		B0B257532329FDBE00EC99A8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 816B3BE017EDFC1244989061 /* Pods-nthu-campusTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -508,6 +702,7 @@
 		};
 		B0B257552329FDBE00EC99A8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8DA1AC977102FC7CF981F60 /* Pods-nthu-campusUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -528,6 +723,7 @@
 		};
 		B0B257562329FDBE00EC99A8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2B7FC86AD02DFD3BD4268279 /* Pods-nthu-campusUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
