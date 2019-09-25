@@ -9,6 +9,7 @@ target 'nthu-campus' do
   pod 'SwiftyJSON', '~> 4.0'
   pod 'SwiftSoup'
   pod 'PromiseKit/Alamofire', '~> 6.0'
+  pod 'SQLite.swift', '~> 0.12.0'
 
   target 'nthu-campusTests' do
     inherit! :search_paths

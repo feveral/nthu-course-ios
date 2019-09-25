@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uKP-3j-KAH">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--課表-->
+        <scene sceneID="8Qe-3L-IR7">
+            <objects>
+                <navigationController storyboardIdentifier="CurriculumPage" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uKP-3j-KAH" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="課表" id="3Bm-TU-cPx"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mF4-DN-Y8t">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="deZ-vB-IIs" kind="relationship" relationship="rootViewController" id="CYP-Nb-aZv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sJG-6z-zYS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="257" y="-149"/>
+        </scene>
+        <!--Curriculum Page Controller-->
+        <scene sceneID="QOW-wq-e2u">
+            <objects>
+                <viewController id="deZ-vB-IIs" customClass="CurriculumPageController" customModule="nthu_campus" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="C3k-r5-JfZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="oJd-VO-LWZ">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Pkm-fe-kG9">
+                                    <size key="itemSize" width="91" height="67"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="courseCollectionCell" id="enb-qS-OiY" customClass="CourseCollectionCell" customModule="nthu_campus" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="91" height="67"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="91" height="67"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXS-KA-fis">
+                                                    <rect key="frame" x="0.0" y="0.0" width="91" height="67"/>
+                                                    <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="hXS-KA-fis" firstAttribute="centerY" secondItem="enb-qS-OiY" secondAttribute="centerY" id="Dmc-cM-YG7"/>
+                                            <constraint firstAttribute="trailing" secondItem="hXS-KA-fis" secondAttribute="trailing" id="MKn-P6-PMZ"/>
+                                            <constraint firstItem="hXS-KA-fis" firstAttribute="top" secondItem="enb-qS-OiY" secondAttribute="top" id="cBQ-SP-ba7"/>
+                                            <constraint firstItem="hXS-KA-fis" firstAttribute="leading" secondItem="enb-qS-OiY" secondAttribute="leading" id="npD-X3-qSy"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="nameLabel" destination="hXS-KA-fis" id="j2O-Gy-v1k"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="deZ-vB-IIs" id="JHz-yb-aIK"/>
+                                    <outlet property="delegate" destination="deZ-vB-IIs" id="Cjc-MT-Mdf"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="eLq-tF-nZy" firstAttribute="trailing" secondItem="oJd-VO-LWZ" secondAttribute="trailing" id="3eE-jf-QUL"/>
+                            <constraint firstItem="oJd-VO-LWZ" firstAttribute="top" secondItem="eLq-tF-nZy" secondAttribute="top" id="CjW-ZP-HZC"/>
+                            <constraint firstItem="eLq-tF-nZy" firstAttribute="bottom" secondItem="oJd-VO-LWZ" secondAttribute="bottom" id="Ei6-Hm-SZ5"/>
+                            <constraint firstItem="oJd-VO-LWZ" firstAttribute="leading" secondItem="eLq-tF-nZy" secondAttribute="leading" id="xkX-8O-yr5"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="eLq-tF-nZy"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="BMd-5L-1cP"/>
+                    <connections>
+                        <outlet property="collectionView" destination="oJd-VO-LWZ" id="GcK-T7-vU5"/>
+                        <outlet property="collectionViewFlowLayout" destination="Pkm-fe-kG9" id="qe4-FS-zhQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PYL-RH-NMo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1357.9710144927537" y="-149.33035714285714"/>
+        </scene>
+    </scenes>
+</document>
