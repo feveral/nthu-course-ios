@@ -35,7 +35,7 @@ enum CoursePeriod {
     case other
 }
 
-class CourseTimeSlot {
+class CourseTimeSlot:NSObject {
 
     var dayOfWeek: DayOfWeek = .other
     var coursePeriod: CoursePeriod = .other
@@ -59,6 +59,10 @@ class CourseTimeSlot {
             return true
         }
         return false
+    }
+    
+    override var description: String {
+        return "dayOfWeek:\(dayOfWeek) coursePeriod:\(coursePeriod)"
     }
     
     static func makeByString(_ dayOfWeekStr: String, _ periodStr: String) -> CourseTimeSlot {

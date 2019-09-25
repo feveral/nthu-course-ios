@@ -10,7 +10,7 @@ import Foundation
 import SwiftyJSON
 import SQLite
 
-class Course {
+class Course: NSObject {
     public var courseId: String
     public var chineseName: String
     public var englishName: String
@@ -56,6 +56,10 @@ class Course {
         self.compulsoryStatement = compulsoryStatement
     }
     
+    override var description: String {
+        return "\(super.description) courseId:\(courseId) chineseName:\(chineseName) englishName:\(englishName) credits:\(credits) peopleLimit:\(peopleLimit) newStudentReserved: \(newStudentReserved) liberalTarget:\(liberalTarget) liberalType:\(liberalType) language:\(language) remarks:\(remarks) stopOpeningNotes:\(stopOpeningNotes) teacher:\(teacher) blockStatement:\(blockStatement) courseLimitStatement:\(courseLimitStatement) firstSecondSpecialties:\(firstSecondSpecialties) creditCourseCorrespondence:\(creditCourseCorrespondence) cannotSignedStatement:\(cannotSignedStatement) compulsoryStatement:\(compulsoryStatement) roomTime: \(roomTime.description)"
+    }
+    
     func isTimeSlotExist(_ timeSlot: CourseTimeSlot) -> Bool {
         for (_, timeSlotList) in self.roomTime.get() {
             for ts in timeSlotList {
@@ -95,8 +99,32 @@ class Course {
         )
     }
     
-    static func dbRowToCourse(row: [Binding?]) {
-        
+    static func dbRowToCourse(courseRow: [Binding?], courseRoomTimeRows: [[Binding?]]) -> Course {
+        let roomTime = CourseRoomTime()
+        for r in courseRoomTimeRows {
+            roomTime.add(r[1]! as! String, r[2]! as! String)
+        }
+        return Course(
+            courseId: courseRow[0]! as! String,
+            chineseName: courseRow[1]! as! String,
+            englishName: courseRow[2]! as! String,
+            credits: Int(courseRow[3]! as! Int64),
+            peopleLimit: courseRow[4]! as! String,
+            newStudentReserved: Int(courseRow[5]! as! Int64),
+            liberalTarget: courseRow[6]! as! String,
+            liberalType: courseRow[7]! as! String,
+            language: courseRow[8]! as! String,
+            remarks: courseRow[9]! as! String,
+            stopOpeningNotes: courseRow[10]! as! String,
+            roomTime: roomTime,
+            teacher: courseRow[11]! as! String,
+            blockStatement: courseRow[12]! as! String,
+            courseLimitStatement: courseRow[13]! as! String,
+            firstSecondSpecialties: courseRow[14]! as! String,
+            creditCourseCorrespondence: courseRow[15]! as! String,
+            cannotSignedStatement: courseRow[16]! as! String,
+            compulsoryStatement: courseRow[17]! as! String
+        )
     }
     
     static func save(course: Course) {
@@ -104,19 +132,19 @@ class Course {
             let db: Connection = CourseDatabase.getDatabaseConnection()!
             let insertCourseSQL = """
             INSERT INTO \(Config.Text.COURSE) VALUES(
-            '\(course.courseId)', '\(course.chineseName)'), '\(course.englishName)'),
-            '\(course.credits)'), '\(course.peopleLimit)'), '\(course.newStudentReserved)'),
-            '\(course.liberalTarget)'), '\(course.liberalType)'), '\(course.language)'),
-            '\(course.remarks)'), '\(course.stopOpeningNotes)'), '\(course.teacher)'),
-            '\(course.blockStatement)'), '\(course.courseLimitStatement)'), '\(course.firstSecondSpecialties)'),
-            '\(course.creditCourseCorrespondence)'), '\(course.cannotSignedStatement)'), '\(course.compulsoryStatement)')
+            '\(course.courseId)', '\(course.chineseName)', '\(course.englishName)',
+            '\(course.credits)', '\(course.peopleLimit)', '\(course.newStudentReserved)',
+            '\(course.liberalTarget)', '\(course.liberalType)', '\(course.language)',
+            '\(course.remarks)', '\(course.stopOpeningNotes)', '\(course.teacher)',
+            '\(course.blockStatement)', '\(course.courseLimitStatement)', '\(course.firstSecondSpecialties)',
+            '\(course.creditCourseCorrespondence)', '\(course.cannotSignedStatement)', '\(course.compulsoryStatement)')
             """
             try db.execute(insertCourseSQL)
             for (room, timeSlotList) in course.roomTime.get() {
                 for timeSlot in timeSlotList {
                     try db.execute("""
                         INSERT INTO \(Config.Text.COURSE_ROOM_TIME) VALUES(
-                        '\(course.courseId)', '\(room)', '\(timeSlot.toString())'
+                        '\(course.courseId)', '\(room)', '\(timeSlot.toString())')
                         """
                     )
                 }
@@ -124,5 +152,41 @@ class Course {
         } catch {
             print(error)
         }
+    }
+    
+    static func saveMany(_ courses: [Course]) {
+        for course in courses {
+            Course.save(course: course)
+        }
+    }
+    
+    static func deleteAll() {
+        do {
+            let db = CourseDatabase.getDatabaseConnection()
+            try db?.execute("DELETE FROM \(Config.Text.COURSE)")
+            try db?.execute("DELETE FROM \(Config.Text.COURSE_ROOM_TIME)")
+        } catch {
+            print(error)
+        }
+    }
+    
+    static func findAllCourse() -> [Course] {
+        do {
+            var courses: [Course] = []
+            let db: Connection = CourseDatabase.getDatabaseConnection()!
+            let courseSQL = "SELECT * from \(Config.Text.COURSE)"
+            for row in try db.prepare(courseSQL) {
+                let roomTimeSQL = "SELECT * FROM \(Config.Text.COURSE_ROOM_TIME) WHERE courseId='\(row[0]! as! String)'"
+                var roomTimeRows: [[Binding?]] = []
+                for rtr in try db.prepare(roomTimeSQL) {
+                    roomTimeRows.append(rtr)
+                }
+                courses.append(Course.dbRowToCourse(courseRow: row, courseRoomTimeRows: roomTimeRows))
+            }
+            return courses
+        } catch {
+            print(error)
+        }
+        return []
     }
 }

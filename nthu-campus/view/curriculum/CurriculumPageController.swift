@@ -51,6 +51,9 @@ class CurriculumPageController: UIViewController, UICollectionViewDataSource, UI
         } .then { courseIds in
             return CourseService.getCourses(courseIds)
         } .done { courses in
+            Course.deleteAll()
+            Course.saveMany(courses)
+            print(Course.findAllCourse())
             self.collectionStatus.setCourses(courses)
             self.collectionView.reloadData()
         } .catch { error in

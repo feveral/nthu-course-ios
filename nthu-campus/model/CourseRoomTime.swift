@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CourseRoomTime {
+class CourseRoomTime: NSObject {
     
     var roomTime: [String: [CourseTimeSlot]] = [:]
     
@@ -32,4 +32,17 @@ class CourseRoomTime {
     func get() -> [String:[CourseTimeSlot]] {
         return roomTime
     }
+    
+    override var description: String {
+        var str = ""
+        for (room, ctsList) in roomTime {
+            str += "room:\(room) ["
+            for cts in ctsList {
+                str += "timeSlot: \(cts.description), "
+            }
+            str += "]"
+        }
+        return str
+    }
+    
 }
