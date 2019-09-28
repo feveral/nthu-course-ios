@@ -19,6 +19,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mF4-DN-Y8t">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.84465640779999995" green="0.51457053419999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="deZ-vB-IIs" kind="relationship" relationship="rootViewController" id="CYP-Nb-aZv"/>
@@ -28,7 +29,7 @@
             </objects>
             <point key="canvasLocation" x="257" y="-149"/>
         </scene>
-        <!--Curriculum Page Controller-->
+        <!--課表查詢-->
         <scene sceneID="QOW-wq-e2u">
             <objects>
                 <viewController id="deZ-vB-IIs" customClass="CurriculumPageController" customModule="nthu_campus" customModuleProvider="target" sceneMemberID="viewController">
@@ -88,7 +89,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eLq-tF-nZy"/>
                     </view>
-                    <navigationItem key="navigationItem" id="BMd-5L-1cP"/>
+                    <navigationItem key="navigationItem" title="課表查詢" id="BMd-5L-1cP">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="ic_refresh" id="pXU-Nu-cGu">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="refreshButtonClick:" destination="deZ-vB-IIs" id="Obn-u8-GPy"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="oJd-VO-LWZ" id="GcK-T7-vU5"/>
                         <outlet property="collectionViewFlowLayout" destination="Pkm-fe-kG9" id="qe4-FS-zhQ"/>
@@ -99,4 +107,8 @@
             <point key="canvasLocation" x="1357.9710144927537" y="-149.33035714285714"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ic_refresh" width="24" height="24"/>
+    </resources>
+    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

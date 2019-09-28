@@ -17,7 +17,11 @@ struct Config {
 struct TextConfig {
     let COURSE = "Course"
     let COURSE_ROOM_TIME = "CourseRoomTime"
+    let SETTING = "Setting"
     let COURSE_DB_FILE_NAME = "course"
+    let SETTING_ILMS_ACCOUNT = "ilmsAccount"
+    let SETTING_ILMS_PASSWORD = "ilmsPassword"
+    let SETTING_ILMS_COOKIE = "ilmsCookie"
 }
 
 struct ApplicationConfig {

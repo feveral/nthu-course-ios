@@ -17,12 +17,18 @@ class IlmsLoginInfo {
     var department: String
     var cookieValue: String
     
-    init(_ account: String, _ password: String, _ loginResponseJson: JSON, _ loginResponseHeader: Header) {
+    init(_ account: String, _ password: String, _ loginResponseJson: JSON, _ loginResponseHeader: Header) throws {
         self.account = account
-        self.name = loginResponseJson["ret"]["name"].string!
-        self.email = loginResponseJson["ret"]["email"].string!
-        self.department = loginResponseJson["ret"]["divName"].string!
-        self.cookieValue = loginResponseHeader.getSetCookieHeaders()
+        if let name = loginResponseJson["ret"]["name"].string,
+            let email = loginResponseJson["ret"]["email"].string,
+            let department = loginResponseJson["ret"]["divName"].string {
+            self.name = name
+            self.email = email
+            self.department = department
+            self.cookieValue = loginResponseHeader.getSetCookieHeaders()
+        } else {
+            throw NSError(domain: "jsonResultNotExpect", code: 1000, userInfo: ["json":loginResponseJson])
+        }
     }
     
     func getCookieHeaderValue() -> String {

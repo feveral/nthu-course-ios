@@ -18,7 +18,11 @@ class IlmsService {
             let apiRequest = APIRequest("\(Config.Application.ilmsDomain)/sys/lib/ajax/login_submit.php?account=\(account)&password=\(password)&ssl=1&stay=0")
             apiRequest.getJsonAndHeader().done { (arg) in
                 let (json, header) = arg
-                seal.fulfill(IlmsLoginInfo(account, password, json, header))
+                do {
+                    seal.fulfill(try IlmsLoginInfo(account, password, json, header))
+                } catch {
+                    seal.reject(error)
+                }
             } .catch { error in
                 seal.reject(error)
             }

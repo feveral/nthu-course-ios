@@ -170,6 +170,18 @@ class Course: NSObject {
         }
     }
     
+    static func isAnyCourseExist() -> Bool {
+        do {
+            let db: Connection = CourseDatabase.getDatabaseConnection()!
+            for _ in try db.prepare("SELECT * FROM \(Config.Text.COURSE)") {
+                return true
+            }
+        } catch {
+            print(error)
+        }
+        return false
+    }
+    
     static func findAllCourse() -> [Course] {
         do {
             var courses: [Course] = []

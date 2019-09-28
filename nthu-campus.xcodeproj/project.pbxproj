@@ -22,6 +22,9 @@
 		B0A8C998233B718100252365 /* CourseRoomTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A8C997233B718100252365 /* CourseRoomTime.swift */; };
 		B0A8C99F233B967800252365 /* CourseInfoPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A8C99E233B967800252365 /* CourseInfoPageController.swift */; };
 		B0A8C9A1233B9C2800252365 /* CourseInfoPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0A8C9A0233B9C2800252365 /* CourseInfoPage.storyboard */; };
+		B0A8C9A3233D1DEB00252365 /* SettingPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0A8C9A2233D1DEB00252365 /* SettingPage.storyboard */; };
+		B0A8C9A5233D1E0000252365 /* SettingPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A8C9A4233D1E0000252365 /* SettingPageController.swift */; };
+		B0A8C9A7233D23E600252365 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A8C9A6233D23E600252365 /* Setting.swift */; };
 		B0B2572A2329FDBB00EC99A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B257292329FDBB00EC99A8 /* AppDelegate.swift */; };
 		B0B2572C2329FDBB00EC99A8 /* MainPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B2572B2329FDBB00EC99A8 /* MainPageController.swift */; };
 		B0B2572F2329FDBB00EC99A8 /* MainPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0B2572D2329FDBB00EC99A8 /* MainPage.storyboard */; };
@@ -74,6 +77,9 @@
 		B0A8C997233B718100252365 /* CourseRoomTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseRoomTime.swift; sourceTree = "<group>"; };
 		B0A8C99E233B967800252365 /* CourseInfoPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseInfoPageController.swift; sourceTree = "<group>"; };
 		B0A8C9A0233B9C2800252365 /* CourseInfoPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CourseInfoPage.storyboard; sourceTree = "<group>"; };
+		B0A8C9A2233D1DEB00252365 /* SettingPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingPage.storyboard; sourceTree = "<group>"; };
+		B0A8C9A4233D1E0000252365 /* SettingPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPageController.swift; sourceTree = "<group>"; };
+		B0A8C9A6233D23E600252365 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		B0B257262329FDBB00EC99A8 /* nthu-campus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "nthu-campus.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0B257292329FDBB00EC99A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0B2572B2329FDBB00EC99A8 /* MainPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageController.swift; sourceTree = "<group>"; };
@@ -163,6 +169,8 @@
 		B0A8C99A233B934700252365 /* setting */ = {
 			isa = PBXGroup;
 			children = (
+				B0A8C9A2233D1DEB00252365 /* SettingPage.storyboard */,
+				B0A8C9A4233D1E0000252365 /* SettingPageController.swift */,
 			);
 			path = setting;
 			sourceTree = "<group>";
@@ -232,6 +240,7 @@
 				B00A8595233631C10076F5C7 /* IlmsLoginInfo.swift */,
 				B0A8C995233A5B2500252365 /* CourseTimeSlot.swift */,
 				B0A8C997233B718100252365 /* CourseRoomTime.swift */,
+				B0A8C9A6233D23E600252365 /* Setting.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -377,6 +386,7 @@
 			files = (
 				B0B2575D232A027D00EC99A8 /* CurriculumPage.storyboard in Resources */,
 				B0A8C9A1233B9C2800252365 /* CourseInfoPage.storyboard in Resources */,
+				B0A8C9A3233D1DEB00252365 /* SettingPage.storyboard in Resources */,
 				B0B257342329FDBE00EC99A8 /* LaunchScreen.storyboard in Resources */,
 				B0B257312329FDBE00EC99A8 /* Assets.xcassets in Resources */,
 				B0B2572F2329FDBB00EC99A8 /* MainPage.storyboard in Resources */,
@@ -500,10 +510,12 @@
 				B0B25763232A2B5500EC99A8 /* APIRequest.swift in Sources */,
 				B00A8592233612870076F5C7 /* IlmsService.swift in Sources */,
 				B0B2572A2329FDBB00EC99A8 /* AppDelegate.swift in Sources */,
+				B0A8C9A7233D23E600252365 /* Setting.swift in Sources */,
 				B0A8C99F233B967800252365 /* CourseInfoPageController.swift in Sources */,
 				B00A859D233699B50076F5C7 /* CourseService.swift in Sources */,
 				B00A85A8233947760076F5C7 /* CurriculumCourseColor.swift in Sources */,
 				B0A8C998233B718100252365 /* CourseRoomTime.swift in Sources */,
+				B0A8C9A5233D1E0000252365 /* SettingPageController.swift in Sources */,
 				B00A859B233647590076F5C7 /* ServiceUtils.swift in Sources */,
 				B00A85A6233938550076F5C7 /* CourseCollectionCell.swift in Sources */,
 				B00A85A02338E8D60076F5C7 /* courseDatabase.swift in Sources */,

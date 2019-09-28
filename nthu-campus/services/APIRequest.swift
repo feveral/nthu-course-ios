@@ -11,27 +11,16 @@ import SwiftyJSON
 import Alamofire
 import PromiseKit
 
-enum APIError: Error {
-    case responseProblem
-    case decodingProblem
-    case encodingProblem
-}
-
 class APIRequest {
     
-    var url: URL
-    var urlRequest: URLRequest
     var headers: [String:String] = [:]
     var endpoint: String
     
     init(_ endpoint: String) {
         self.endpoint = endpoint
-        self.url = URL(string: endpoint)!
-        self.urlRequest = URLRequest(url: url)
     }
     
     func addHeader(key: String, value: String) {
-        self.urlRequest.addValue(key, forHTTPHeaderField: value)
         self.headers[key] = value
     }
     
@@ -73,7 +62,7 @@ class APIRequest {
     
     func getHtml() -> Promise<String> {
         return Promise<String> { seal in
-            Alamofire.request(endpoint).responseData { response in
+            Alamofire.request(endpoint, headers: headers).responseData { response in
                 if response.result.isSuccess {
                     let html = String(data: response.data!, encoding: String.Encoding.utf8)!
                     seal.fulfill(html)

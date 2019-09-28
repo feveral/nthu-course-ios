@@ -13,8 +13,8 @@ class CurriculumPageController: UIViewController, UICollectionViewDataSource, UI
     //MARK: Properties
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var collectionViewFlowLayout: UICollectionViewFlowLayout!
-    let fullScreenSize = UIScreen.main.bounds.width
     let collectionStatus = CurriculumCollectionStatus()
+    let loadSuccessful: Bool = false
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return collectionStatus.cellCount();
@@ -25,17 +25,45 @@ class CurriculumPageController: UIViewController, UICollectionViewDataSource, UI
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let courseWidth = Int(((fullScreenSize-50) / 5))
-        if (indexPath.item % 6 == 0) {
-            return CGSize(width: 50, height: 70)
-        } else if (indexPath.item % 6 == 5) {
-            return CGSize(width: CGFloat((Int(fullScreenSize) - 50) - courseWidth*4) , height: 70)
-        }
-        return CGSize(width: courseWidth, height: 70)
+        return collectionStatus.buildCellFrame(indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionStatus.clickCell(self, indexPath)
+    }
+    
+    func loadCourses() {
+        if (!Course.isAnyCourseExist()) {
+            fetchAndSaveCourseFromIlms()
+        } else {
+            self.collectionStatus.setCourses(Course.findAllCourse())
+            self.collectionView.reloadData()
+        }
+    }
+    
+    func fetchAndSaveCourseFromIlms() {
+        if let account = Setting.find(Config.Text.SETTING_ILMS_ACCOUNT),
+            let password = Setting.find(Config.Text.SETTING_ILMS_PASSWORD) {
+            IlmsService.login(account, password)
+                .then { ilmsLoginInfo in
+                    return IlmsService.getCoursesIds(ilmsLoginInfo.getCookieHeaderValue())
+                } .then { courseIds in
+                    return CourseService.getCourses(courseIds)
+                } .done { courses in
+                    Course.deleteAll()
+                    Course.saveMany(courses)
+                    self.collectionStatus.setCourses(courses)
+                    self.collectionView.reloadData()
+                } .catch { error in
+                    print(error)
+                }
+        } else {
+            print("account password fail")
+        }
+    }
+    
+    @IBAction func refreshButtonClick(_ sender: Any) {
+        fetchAndSaveCourseFromIlms()
     }
     
     override func viewDidLoad() {
@@ -44,20 +72,6 @@ class CurriculumPageController: UIViewController, UICollectionViewDataSource, UI
         collectionViewFlowLayout.minimumLineSpacing = 0
         collectionViewFlowLayout.minimumInteritemSpacing = 0
         collectionViewFlowLayout.scrollDirection = .vertical
-        
-        IlmsService.login("108062613", "09251207")
-          .then { ilmsLoginInfo in
-            return IlmsService.getCoursesIds(ilmsLoginInfo.getCookieHeaderValue())
-        } .then { courseIds in
-            return CourseService.getCourses(courseIds)
-        } .done { courses in
-            Course.deleteAll()
-            Course.saveMany(courses)
-            print(Course.findAllCourse())
-            self.collectionStatus.setCourses(courses)
-            self.collectionView.reloadData()
-        } .catch { error in
-            print(error)
-        }
+        loadCourses()
     }
 }

@@ -12,17 +12,5 @@ class MainPageController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        IlmsService.login("108062613", "09251207")
-//          .then { ilmsLoginInfo in
-//            return IlmsService.getCoursesIds(ilmsLoginInfo.getCookieHeaderValue())
-//        } .then { courseIds in
-//            return CourseService.getCourses(courseIds)
-//        } .done { courses in
-//            for c in courses {
-//                print(c.courseId, c.chineseName, c.credits, c.roomTime.get())
-//            }
-//        } .catch { error in
-//            print(error)
-//        }
     }
 }

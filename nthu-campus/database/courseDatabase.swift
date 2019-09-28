@@ -36,14 +36,22 @@ class CourseDatabase {
             print("Course DB does not exist in documents folder")
             do {
                 db = try Connection(databaseURL!.path)
-                createTable()
+                createAllTable()
             } catch {
                 print("CourseDB openDatabase Connection Fail")
             }
         }
     }
     
-    static func createTable() {
+    static func createTable(sql: String, tableName: String) {
+        do {
+            try db?.execute(sql)
+        } catch {
+            print("Create Table \(tableName)")
+        }
+    }
+    
+    static func createAllTable() {
         let createCourseSQL =
         """
             CREATE TABLE \(Config.Text.COURSE) (
@@ -75,12 +83,17 @@ class CourseDatabase {
                 timeSlot TEXT NOT NULL
             );
         """
-        do {
-            try db?.execute(createCourseSQL)
-            try db?.execute(createCourseRoomTimeSQL)
-        } catch {
-            print("Create Table Fail")
-        }
+        
+        let createSettingSQL =
+        """
+            CREATE TABLE \(Config.Text.SETTING) (
+                key TEXT NOT NULL PRIMARY KEY,
+                value TEXT NOT NULL
+            );
+        """
+        CourseDatabase.createTable(sql: createCourseSQL, tableName: Config.Text.COURSE)
+        CourseDatabase.createTable(sql: createCourseRoomTimeSQL, tableName: Config.Text.COURSE_ROOM_TIME)
+        CourseDatabase.createTable(sql: createSettingSQL, tableName: Config.Text.SETTING)
     }
     
 }

@@ -68,12 +68,23 @@ class CurriculumCollectionStatus {
         }
         if (indexPath.item % 6 == 0) {
             cell.nameLabel?.text = getTimeStringByCollecitonIndex(indexPath.item)
-            cell.nameLabel?.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+            cell.nameLabel?.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
             return cell
         }
         cell.nameLabel?.text = ""
         cell.nameLabel?.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         return cell
+    }
+    
+    public func buildCellFrame(_ indexPath: IndexPath) -> CGSize {
+        let fullScreenSize = UIScreen.main.bounds.width
+        let courseWidth = Int(((fullScreenSize-50) / 5))
+        if (indexPath.item % 6 == 0) {
+            return CGSize(width: 50, height: 70)
+        } else if (indexPath.item % 6 == 5) {
+            return CGSize(width: CGFloat((Int(fullScreenSize) - 50) - courseWidth*4) , height: 70)
+        }
+        return CGSize(width: courseWidth, height: 70)
     }
     
     public func clickCell(_ viewController: UIViewController, _ indexPath: IndexPath) {
