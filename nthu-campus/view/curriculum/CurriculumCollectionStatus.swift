@@ -88,16 +88,17 @@ class CurriculumCollectionStatus {
     }
     
     public func clickCell(_ viewController: UIViewController, _ indexPath: IndexPath) {
-//        let vc = CourseInfoPageController()
-//        vc.text = "courseinfopage"
-//        viewController.navigationController?.pushViewController(vc, animated: true)
-        
-//        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        let newViewController = storyBoard.instantiateViewController(withIdentifier: "newViewController") as! NewViewController
-//        self.present(newViewController, animated: true, completion: nil)
+        let storyBoard: UIStoryboard = UIStoryboard(name: "CourseInfoPage", bundle: nil)
+        let courseInfoPageController = storyBoard.instantiateViewController(withIdentifier: "courseInfoPage") as! CourseInfoPageController
+        let timeSlot = collectionIndexToCourseTimeSlot(indexPath.item)
+        if let course = getCourseInTimeSlot(timeSlot) {
+            courseInfoPageController.course = course
+                viewController.navigationController?.pushViewController(courseInfoPageController, animated: true)
+        }
+
     }
     
-    private func getTimeStringByCollecitonIndex(_ index: Int) -> String{
+    private func getTimeStringByCollecitonIndex(_ index: Int) -> String {
         if (index == 6 * 0) { return "1\n8:00" }
         if (index == 6 * 1) { return "2\n9:00" }
         if (index == 6 * 2) { return "3\n10:10" }

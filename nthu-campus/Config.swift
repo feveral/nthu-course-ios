@@ -21,7 +21,9 @@ struct TextConfig {
     let COURSE_DB_FILE_NAME = "course"
     let SETTING_ILMS_ACCOUNT = "ilmsAccount"
     let SETTING_ILMS_PASSWORD = "ilmsPassword"
-    let SETTING_ILMS_COOKIE = "ilmsCookie"
+    let SETTING_ILMS_NAME = "ilmsName"
+    let SETTING_ILMS_EMAIL = "ilmsEmail"
+    let SETTING_ILMS_DEPARTMENT = "ilmsDepartment"
 }
 
 struct ApplicationConfig {

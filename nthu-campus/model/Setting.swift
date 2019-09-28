@@ -10,7 +10,7 @@ import Foundation
 
 class Setting {
     
-    static func find(_ key: String) -> String? {
+    static func find(_ key: String) -> String {
         do {
             let db = CourseDatabase.getDatabaseConnection()!
             for row in try db.prepare("SELECT * FROM \(Config.Text.SETTING) WHERE key='\(key)'") {
@@ -19,18 +19,18 @@ class Setting {
         } catch {
             print(error)
         }
-        return nil
+        return ""
     }
     
-    static func setIlmsCookie(_ cookie: String) {
+    static func set(_ key: String, _ value: String) {
         do {
             let db = CourseDatabase.getDatabaseConnection()!
             
-            if (Setting.isSettingExist(Config.Text.SETTING_ILMS_COOKIE)) {
-                let sql = "UPDATE \(Config.Text.SETTING) SET value='\(cookie)' WHERE key='\(Config.Text.SETTING_ILMS_COOKIE)' "
+            if (Setting.isSettingExist(key)) {
+                let sql = "UPDATE \(Config.Text.SETTING) SET value='\(value)' WHERE key='\(key)' "
                 try db.execute(sql)
             } else {
-                let sql = "INSERT INTO \(Config.Text.SETTING) VALUES ('\(Config.Text.SETTING_ILMS_COOKIE)', '\(cookie)')"
+                let sql = "INSERT INTO \(Config.Text.SETTING) VALUES ('\(key)', '\(value)')"
                 try db.execute(sql)
             }
         } catch {

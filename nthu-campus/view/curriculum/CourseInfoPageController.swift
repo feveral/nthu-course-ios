@@ -10,10 +10,20 @@ import UIKit
 
 class CourseInfoPageController: UIViewController {
 
-    var text: String = ""
+    var course: Course!
+    
+    @IBOutlet weak var courseIdLabel: UILabel!
+    @IBOutlet weak var courseNameLabel: UILabel!
+    @IBOutlet weak var teacherLabel: UILabel!
+    @IBOutlet weak var creditLabel: UILabel!
+    @IBOutlet weak var courseRoomTimeLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(text)
+        courseIdLabel.text = course.courseId
+        courseNameLabel.text = course.chineseName
+        teacherLabel.text = course.teacher
+        creditLabel.text = String(course.credits) + " 學分"
+        courseRoomTimeLabel.text = course.roomTime.toString()
     }
 }

@@ -26,4 +26,19 @@ class CourseService {
         }
         return when(fulfilled: promises)
     }
+    
+    static func getLatestSemester() -> Promise<CourseSemester> {
+        return Promise<CourseSemester> { seal in
+            let apiRequest = APIRequest("\(Config.Application.courseServerDomain)/course/semester/latest")
+            apiRequest.get().done { json in
+                if let semester = json["semester"].string {
+                    seal.fulfill(CourseSemester(semester))
+                } else {
+                    seal.reject(NSError(domain: "jsonNotExpect", code: 1001, userInfo: ["json":json]))
+                }
+            }.catch {error in
+                seal.reject(error)
+            }
+        }
+    }
 }

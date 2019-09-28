@@ -11,6 +11,13 @@ import SwiftSoup
 
 class ServiceUtils {
     
+    static func isIlmsNoPermissionPage(_ html: String) -> Bool {
+        if (html == "<div style='color:#606060; text-align: center; font-size: 13px; border: 1px solid #ccc; margin: 20px; padding: 20px 2px 20px 2px;'>No Permission!</div>") {
+            return true
+        }
+        return false
+    }
+    
     static func removeParenthesesIfExist(_ jsonData: Data) -> Data {
         var str = String(data: jsonData, encoding: String.Encoding.utf8)!
         if (str.first == "(" ) {

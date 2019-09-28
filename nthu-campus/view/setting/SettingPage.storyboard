@@ -18,31 +18,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="iLMS account" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T4w-uG-R1m">
-                                <rect key="frame" x="115" y="324" width="177" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <attributedString key="attributedText"/>
-                                <textInputTraits key="textInputTraits" textContentType="username"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="iLMS password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eh6-lk-Jgi">
-                                <rect key="frame" x="115" y="396" width="177" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <attributedString key="attributedText"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
-                            </textField>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UJF-Ox-Wzo">
-                                <rect key="frame" x="143" y="534" width="126" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.84465640779999995" green="0.51457053419999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="儲存帳號資訊"/>
-                                <connections>
-                                    <action selector="saveAccountInfo:" destination="gPK-pm-pDh" eventType="touchUpInside" id="xkZ-T2-bXd"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E1c-ob-leN">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="iLMS account" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T4w-uG-R1m">
+                                        <rect key="frame" x="119" y="247" width="177" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <attributedString key="attributedText"/>
+                                        <textInputTraits key="textInputTraits" textContentType="username"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="iLMS password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eh6-lk-Jgi">
+                                        <rect key="frame" x="119" y="333" width="177" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <attributedString key="attributedText"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                    </textField>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UJF-Ox-Wzo">
+                                        <rect key="frame" x="144" y="440" width="126" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.84465640779999995" green="0.51457053419999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="儲存帳號資訊"/>
+                                        <connections>
+                                            <action selector="saveAccountInfo:" destination="gPK-pm-pDh" eventType="touchUpInside" id="xkZ-T2-bXd"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="E1c-ob-leN" firstAttribute="trailing" secondItem="ets-UN-tso" secondAttribute="trailing" id="4dr-hZ-xn7"/>
+                            <constraint firstItem="E1c-ob-leN" firstAttribute="leading" secondItem="ets-UN-tso" secondAttribute="leading" id="QQe-eI-5rL"/>
+                            <constraint firstItem="E1c-ob-leN" firstAttribute="bottom" secondItem="ets-UN-tso" secondAttribute="bottom" id="rzb-8X-f97"/>
+                            <constraint firstItem="E1c-ob-leN" firstAttribute="top" secondItem="ets-UN-tso" secondAttribute="top" id="sRi-7F-gYK"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ets-UN-tso"/>
                     </view>
                     <navigationItem key="navigationItem" title="帳號設定" id="whl-G9-Wsb"/>

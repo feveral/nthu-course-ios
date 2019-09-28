@@ -13,15 +13,14 @@ import PromiseKit
 
 class IlmsService {
     
-    static func login(_ account: String, _ password: String) -> Promise<IlmsLoginInfo> {
-        return Promise<IlmsLoginInfo> { seal in
-            let apiRequest = APIRequest("\(Config.Application.ilmsDomain)/sys/lib/ajax/login_submit.php?account=\(account)&password=\(password)&ssl=1&stay=0")
-            apiRequest.getJsonAndHeader().done { (arg) in
-                let (json, header) = arg
-                do {
-                    seal.fulfill(try IlmsLoginInfo(account, password, json, header))
-                } catch {
-                    seal.reject(error)
+    static func checkIsLogin() -> Promise<Bool> {
+        return Promise<Bool> { seal in
+            let apiRequest = APIRequest("\(Config.Application.ilmsDomain)/home.php?f=allcourse")
+            apiRequest.getHtml().done { html in
+                if (ServiceUtils.isIlmsNoPermissionPage(html)) {
+                    seal.fulfill(false)
+                } else {
+                    seal.fulfill(true)
                 }
             } .catch { error in
                 seal.reject(error)
@@ -29,10 +28,41 @@ class IlmsService {
         }
     }
     
-    static func getCoursesIds(_ cookie: String) -> Promise<[String]> {
+    static func login(_ account: String, _ password: String) -> Promise<IlmsLoginInfo> {
+        return Promise<IlmsLoginInfo> { seal in
+            IlmsService.checkIsLogin().done { isLogin in
+                if (isLogin) {
+                    seal.fulfill(IlmsLoginInfo(
+                        Setting.find(Config.Text.SETTING_ILMS_ACCOUNT),
+                        Setting.find(Config.Text.SETTING_ILMS_PASSWORD),
+                        Setting.find(Config.Text.SETTING_ILMS_NAME),
+                        Setting.find(Config.Text.SETTING_ILMS_EMAIL),
+                        Setting.find(Config.Text.SETTING_ILMS_DEPARTMENT)
+                    ))
+                } else {
+                    print("call login API")
+                    let apiRequest = APIRequest("\(Config.Application.ilmsDomain)/sys/lib/ajax/login_submit.php?account=\(account)&password=\(password)&ssl=1&stay=0")
+                    apiRequest.get().done { json in
+                        if let name = json["ret"]["name"].string,
+                            let email = json["ret"]["email"].string,
+                            let department = json["ret"]["divName"].string {
+                        seal.fulfill(IlmsLoginInfo(account, password, name, email, department))
+                        } else {
+                            seal.reject(NSError(domain: "loginJsonParseError", code: 1000, userInfo: ["json": json]))
+                        }
+                    }.catch { error in
+                        seal.reject(error)
+                    }
+                }
+            }.catch { error in
+                seal.reject(error)
+            }
+        }
+    }
+    
+    static func getCoursesIds() -> Promise<[String]> {
         return Promise<[String]> { seal in
             let apiRequest = APIRequest("\(Config.Application.ilmsDomain)/home.php?f=allcourse")
-            apiRequest.addHeader(key: "Cookie", value: cookie)
             apiRequest.getHtml().done { html in
                 let courseIds = ServiceUtils.parseCourseHtmlToCourseIds(html)
                 seal.fulfill(courseIds)

@@ -33,6 +33,18 @@ class CourseRoomTime: NSObject {
         return roomTime
     }
     
+    func toString() -> String{
+        var result = ""
+        for (room, timeSlotList) in roomTime {
+            result += "\(room) "
+            for timeSlot in timeSlotList {
+                result += "\(timeSlot.toString()) "
+            }
+            result += "\n"
+        }
+        return result
+    }
+    
     override var description: String {
         var str = ""
         for (room, ctsList) in roomTime {

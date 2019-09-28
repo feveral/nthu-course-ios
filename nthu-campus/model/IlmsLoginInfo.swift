@@ -12,26 +12,24 @@ import SwiftyJSON
 class IlmsLoginInfo {
     
     var account: String
+    var password: String
     var name: String
     var email: String
     var department: String
-    var cookieValue: String
     
-    init(_ account: String, _ password: String, _ loginResponseJson: JSON, _ loginResponseHeader: Header) throws {
+    init(_ account: String, _ password: String, _ name: String, _ email: String, _ department: String) {
         self.account = account
-        if let name = loginResponseJson["ret"]["name"].string,
-            let email = loginResponseJson["ret"]["email"].string,
-            let department = loginResponseJson["ret"]["divName"].string {
-            self.name = name
-            self.email = email
-            self.department = department
-            self.cookieValue = loginResponseHeader.getSetCookieHeaders()
-        } else {
-            throw NSError(domain: "jsonResultNotExpect", code: 1000, userInfo: ["json":loginResponseJson])
-        }
+        self.name = name
+        self.email = email
+        self.password = password
+        self.department = department
     }
     
-    func getCookieHeaderValue() -> String {
-        return cookieValue
+    static func save(_ ilmsLoginInfo: IlmsLoginInfo) {
+        Setting.set(Config.Text.SETTING_ILMS_ACCOUNT, ilmsLoginInfo.account)
+        Setting.set(Config.Text.SETTING_ILMS_PASSWORD, ilmsLoginInfo.password)
+        Setting.set(Config.Text.SETTING_ILMS_NAME, ilmsLoginInfo.name)
+        Setting.set(Config.Text.SETTING_ILMS_EMAIL, ilmsLoginInfo.email)
+        Setting.set(Config.Text.SETTING_ILMS_DEPARTMENT, ilmsLoginInfo.department)
     }
 }
