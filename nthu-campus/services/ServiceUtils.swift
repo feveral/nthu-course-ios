@@ -29,16 +29,20 @@ class ServiceUtils {
         return str.data(using: .utf8)!
     }
     
-    static func parseCourseHtmlToCourseIds(_ html: String) -> [String] {
+    static func parseCourseHtmlToCourseIdAndNameList(_ html: String) -> [(String,String)] {
         do {
-            var courseIds: [String] = []
+            var resultList: [(String, String)] = []
             let doc: Document = try SwiftSoup.parse(html)
-            let elements: Elements = try doc.select(".listFirstTD")
-            for ele: Element in elements.array() {
-                let linkText: String = try ele.text()
-                courseIds.append(linkText)
+            let courseIdElements: Elements = try doc.select(".listFirstTD")
+            let courseNameElements: Elements = try doc.select(".listTD > a")
+            for (index, ele) in courseNameElements.array().enumerated() {
+                if (ele.children().count == 0) {
+                    let linkTextCourseName: String = try ele.text()
+                    let linkTextCourseId = try courseIdElements.array()[index].text()
+                    resultList.append((linkTextCourseId, linkTextCourseName))
+                }
             }
-            return courseIds
+            return resultList
         } catch {
             print("error")
             return []

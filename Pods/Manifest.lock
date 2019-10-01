@@ -1,5 +1,8 @@
 PODS:
   - Alamofire (4.8.2)
+  - NVActivityIndicatorView (4.7.0):
+    - NVActivityIndicatorView/Presenter (= 4.7.0)
+  - NVActivityIndicatorView/Presenter (4.7.0)
   - PromiseKit/Alamofire (6.10.0):
     - Alamofire (~> 4.0)
     - PromiseKit/CorePromise
@@ -12,6 +15,7 @@ PODS:
   - Toaster (2.2.0)
 
 DEPENDENCIES:
+  - NVActivityIndicatorView
   - PromiseKit/Alamofire (~> 6.0)
   - SQLite.swift (~> 0.12.0)
   - SwiftSoup
@@ -21,6 +25,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - NVActivityIndicatorView
     - PromiseKit
     - SQLite.swift
     - SwiftSoup
@@ -29,12 +34,13 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  NVActivityIndicatorView: b19ddab2576f805cbe0fb2306cba3476e09a1dea
   PromiseKit: 1fdaeb6c0a94a5114fcb814ff3d772b86886ad4e
   SQLite.swift: d2b4642190917051ce6bd1d49aab565fe794eea3
   SwiftSoup: 230991361c5ba249d140161860a3864a28b63860
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   Toaster: c1a81b376edcc2470157b4d1ee1e9341d3b96455
 
-PODFILE CHECKSUM: 29ab12e35c065a2b494aa527d7de7faa93d640f5
+PODFILE CHECKSUM: 6fac9cf9cfbed8d9c52e15ac8237e4de799cf763
 
 COCOAPODS: 1.7.5

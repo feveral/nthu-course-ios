@@ -60,12 +60,12 @@ class IlmsService {
         }
     }
     
-    static func getCoursesIds() -> Promise<[String]> {
-        return Promise<[String]> { seal in
+    static func getCoursesIdAndNameList() -> Promise<[(String, String)]> {
+        return Promise<[(String, String)]> { seal in
             let apiRequest = APIRequest("\(Config.Application.ilmsDomain)/home.php?f=allcourse")
             apiRequest.getHtml().done { html in
-                let courseIds = ServiceUtils.parseCourseHtmlToCourseIds(html)
-                seal.fulfill(courseIds)
+                let courseIdAndNameList = ServiceUtils.parseCourseHtmlToCourseIdAndNameList(html)
+                seal.fulfill(courseIdAndNameList)
             } .catch { error in
                 seal.reject(error)
             }

@@ -13,12 +13,16 @@ import Alamofire
 
 class CourseService {
     
-    static func getCourses(_ courseIds: [String]) -> Promise<[Course]> {
-        let promises = courseIds.map{ courseId -> Promise<Course> in
+    static func getCourses(_ courseIdAndNameList: [(String, String)]) -> Promise<[Course]> {
+        let promises = courseIdAndNameList.map{ (courseId, courseName) -> Promise<Course> in
             return Promise { seal in
                 let apiRequest = APIRequest("\(Config.Application.courseServerDomain)/course/\(courseId)")
                 apiRequest.get().done { json in
-                    seal.fulfill(Course.jsonToCourse(json))
+                    if (json["status"].bool! == true) {
+                        seal.fulfill(Course.jsonToCourse(json))
+                    } else {
+                        seal.fulfill(Course(courseId: courseId, chineseName: courseName, complete: false))
+                    }
                 }.catch { error in
                     seal.reject(error)
                 }

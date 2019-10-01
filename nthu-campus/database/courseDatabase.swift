@@ -72,7 +72,8 @@ class CourseDatabase {
                 firstSecondSpecialties TEXT NOT NULL,
                 creditCourseCorrespondence TEXT NOT NULL,
                 cannotSignedStatement TEXT NOT NULL,
-                compulsoryStatement TEXT NOT NULL
+                compulsoryStatement TEXT NOT NULL,
+                complete INTEGER NOT NULL
             );
         """
         let createCourseRoomTimeSQL =

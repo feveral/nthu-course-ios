@@ -19,11 +19,33 @@ class SettingPageController: UIViewController {
         saveAccountInfoButton.layer.cornerRadius = 15
         ilmsAccountTextField.text = Setting.find(Config.Text.SETTING_ILMS_ACCOUNT)
         ilmsPasswordTextField.text = Setting.find(Config.Text.SETTING_ILMS_PASSWORD)
+        hideKeyboardWhenTappedAround()
+    }
+    
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        ilmsAccountTextField.resignFirstResponder()
+        ilmsPasswordTextField.resignFirstResponder()
+    }
+    
+    func clearCookies() {
+        let cstorage = HTTPCookieStorage.shared
+        if let cookies = cstorage.cookies(for: URL(string: Config.Application.ilmsDomain)!) {
+            for cookie in cookies {
+                cstorage.deleteCookie(cookie)
+            }
+        }
     }
     
     @IBAction func saveAccountInfo(_ sender: Any) {
         Setting.setIlmsAccount(ilmsAccountTextField.text!)
         Setting.setIlmsPassword(ilmsPasswordTextField.text!)
+        clearCookies()
         let alert = UIAlertController(title: "帳號資訊儲存成功", message: "", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "好", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)

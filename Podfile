@@ -11,6 +11,7 @@ target 'nthu-campus' do
   pod 'PromiseKit/Alamofire', '~> 6.0'
   pod 'SQLite.swift', '~> 0.12.0'
   pod 'Toaster'
+  pod 'NVActivityIndicatorView'
 
   target 'nthu-campusTests' do
     inherit! :search_paths

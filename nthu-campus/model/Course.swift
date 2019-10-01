@@ -30,11 +30,12 @@ class Course: NSObject {
     public var creditCourseCorrespondence: String
     public var cannotSignedStatement: String
     public var compulsoryStatement: String
+    public var complete: Bool
     
-    init(courseId: String, chineseName: String, englishName: String, credits: Int, peopleLimit: String, newStudentReserved: Int,
-         liberalTarget: String, liberalType: String, language: String, remarks: String, stopOpeningNotes: String, roomTime: CourseRoomTime,
-         teacher: String, blockStatement: String, courseLimitStatement: String, firstSecondSpecialties: String,
-         creditCourseCorrespondence: String, cannotSignedStatement: String, compulsoryStatement: String) {
+    init(courseId: String, chineseName: String, englishName: String="", credits: Int=0, peopleLimit: String="", newStudentReserved: Int=0,
+         liberalTarget: String="", liberalType: String="", language: String="", remarks: String="", stopOpeningNotes: String="", roomTime: CourseRoomTime=CourseRoomTime(),
+         teacher: String="", blockStatement: String="", courseLimitStatement: String="", firstSecondSpecialties: String="",
+         creditCourseCorrespondence: String="", cannotSignedStatement: String="", compulsoryStatement: String="", complete: Bool=true) {
         self.courseId = courseId
         self.chineseName = chineseName
         self.englishName = englishName
@@ -54,10 +55,11 @@ class Course: NSObject {
         self.creditCourseCorrespondence = creditCourseCorrespondence
         self.cannotSignedStatement = cannotSignedStatement
         self.compulsoryStatement = compulsoryStatement
+        self.complete = complete
     }
     
     override var description: String {
-        return "\(super.description) courseId:\(courseId) chineseName:\(chineseName) englishName:\(englishName) credits:\(credits) peopleLimit:\(peopleLimit) newStudentReserved: \(newStudentReserved) liberalTarget:\(liberalTarget) liberalType:\(liberalType) language:\(language) remarks:\(remarks) stopOpeningNotes:\(stopOpeningNotes) teacher:\(teacher) blockStatement:\(blockStatement) courseLimitStatement:\(courseLimitStatement) firstSecondSpecialties:\(firstSecondSpecialties) creditCourseCorrespondence:\(creditCourseCorrespondence) cannotSignedStatement:\(cannotSignedStatement) compulsoryStatement:\(compulsoryStatement) roomTime: \(roomTime.description)"
+        return "\(super.description) courseId:\(courseId) chineseName:\(chineseName) englishName:\(englishName) credits:\(credits) peopleLimit:\(peopleLimit) newStudentReserved: \(newStudentReserved) liberalTarget:\(liberalTarget) liberalType:\(liberalType) language:\(language) remarks:\(remarks) stopOpeningNotes:\(stopOpeningNotes) teacher:\(teacher) blockStatement:\(blockStatement) courseLimitStatement:\(courseLimitStatement) firstSecondSpecialties:\(firstSecondSpecialties) creditCourseCorrespondence:\(creditCourseCorrespondence) cannotSignedStatement:\(cannotSignedStatement) compulsoryStatement:\(compulsoryStatement) complete:\(complete) roomTime: \(roomTime.description)"
     }
     
     func isTimeSlotExist(_ timeSlot: CourseTimeSlot) -> Bool {
@@ -123,21 +125,32 @@ class Course: NSObject {
             firstSecondSpecialties: courseRow[14]! as! String,
             creditCourseCorrespondence: courseRow[15]! as! String,
             cannotSignedStatement: courseRow[16]! as! String,
-            compulsoryStatement: courseRow[17]! as! String
+            compulsoryStatement: courseRow[17]! as! String,
+            complete: Int(courseRow[18]! as! Int64) == 1
         )
     }
     
     static func save(course: Course) {
         do {
             let db: Connection = CourseDatabase.getDatabaseConnection()!
+            let complete: Int = (course.complete) ? 1 : 0
             let insertCourseSQL = """
             INSERT INTO \(Config.Text.COURSE) VALUES(
-            '\(course.courseId)', '\(course.chineseName)', '\(course.englishName)',
-            '\(course.credits)', '\(course.peopleLimit)', '\(course.newStudentReserved)',
-            '\(course.liberalTarget)', '\(course.liberalType)', '\(course.language)',
-            '\(course.remarks)', '\(course.stopOpeningNotes)', '\(course.teacher)',
-            '\(course.blockStatement)', '\(course.courseLimitStatement)', '\(course.firstSecondSpecialties)',
-            '\(course.creditCourseCorrespondence)', '\(course.cannotSignedStatement)', '\(course.compulsoryStatement)')
+            '\(course.courseId)', '\(StringUtils.preprocessQuote(course.chineseName))',
+            '\(StringUtils.preprocessQuote(course.englishName))',
+            '\(course.credits)', '\(course.peopleLimit)','\(course.newStudentReserved)',
+            '\(StringUtils.preprocessQuote(course.liberalTarget))',
+            '\(StringUtils.preprocessQuote(course.liberalType))',
+            '\(StringUtils.preprocessQuote(course.language))',
+            '\(StringUtils.preprocessQuote(course.remarks))',
+            '\(StringUtils.preprocessQuote(course.stopOpeningNotes))',
+            '\(StringUtils.preprocessQuote(course.teacher))',
+            '\(StringUtils.preprocessQuote(course.blockStatement))',
+            '\(StringUtils.preprocessQuote(course.courseLimitStatement))',
+            '\(StringUtils.preprocessQuote(course.firstSecondSpecialties))',
+            '\(StringUtils.preprocessQuote(course.creditCourseCorrespondence))',
+            '\(StringUtils.preprocessQuote(course.cannotSignedStatement))',
+            '\(StringUtils.preprocessQuote(course.compulsoryStatement))', \(complete))
             """
             try db.execute(insertCourseSQL)
             for (room, timeSlotList) in course.roomTime.get() {

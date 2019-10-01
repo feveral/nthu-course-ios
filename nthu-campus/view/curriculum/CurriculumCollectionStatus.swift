@@ -68,7 +68,7 @@ class CurriculumCollectionStatus {
         }
         if (indexPath.item % 6 == 0) {
             cell.nameLabel?.text = getTimeStringByCollecitonIndex(indexPath.item)
-            cell.nameLabel?.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+            cell.nameLabel?.backgroundColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
             return cell
         }
         cell.nameLabel?.text = ""

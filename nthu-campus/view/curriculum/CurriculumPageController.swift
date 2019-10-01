@@ -9,6 +9,7 @@
 import UIKit
 import Toaster
 import PromiseKit
+import NVActivityIndicatorView
 
 class CurriculumPageController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
@@ -38,6 +39,9 @@ class CurriculumPageController: UIViewController, UICollectionViewDataSource, UI
     func loadCourses() {
         CourseService.getLatestSemester().done { courseSemester in
             let allCourse = Course.findAllCourse()
+            for c in allCourse {
+                print(c.courseId, c.chineseName, c.credits, c.complete)
+            }
             var coursesInSemester: [Course] = []
             for c in allCourse {
                 if (CourseSemester.isCourseInSemester(courseSemester, c)) {
@@ -55,19 +59,18 @@ class CurriculumPageController: UIViewController, UICollectionViewDataSource, UI
         let account = Setting.find(Config.Text.SETTING_ILMS_ACCOUNT)
         let password = Setting.find(Config.Text.SETTING_ILMS_PASSWORD)
         IlmsService.login(account, password)
-        .then { ilmsLoginInfo -> Promise<[String]> in
+        .then { ilmsLoginInfo -> Promise<[(String, String)]> in
             IlmsLoginInfo.save(ilmsLoginInfo)
-            return IlmsService.getCoursesIds()
-        } .then { courseIds in
-            return CourseService.getCourses(courseIds)
+            return IlmsService.getCoursesIdAndNameList()
+        } .then { courseIdAndNameList in
+            return CourseService.getCourses(courseIdAndNameList)
         } .done { courses in
             Course.deleteAll()
             Course.saveMany(courses)
             self.loadCourses()
-            print(courses.count)
             Toast(text: "課表載入成功").show()
         } .catch { error in
-            Toast(text: "課表載入失敗，請確認是否有網路連線").show()
+            Toast(text: "課表載入失敗，請確認帳號密碼是否輸入正確\n或是否有連上網路").show()
             print(error)
         }
     }
@@ -81,7 +84,7 @@ class CurriculumPageController: UIViewController, UICollectionViewDataSource, UI
         let width = UIScreen.main.bounds.width
         for w in weekList {
             let label = UILabel(frame: CGRect(x:0, y:0, width: width, height: 40))
-            label.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+            label.backgroundColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
             label.text = w
             label.textAlignment = .center
             weekBar.addArrangedSubview(label)
