@@ -43,8 +43,8 @@ class SettingPageController: UIViewController {
     }
     
     @IBAction func saveAccountInfo(_ sender: Any) {
-        Setting.setIlmsAccount(ilmsAccountTextField.text!)
-        Setting.setIlmsPassword(ilmsPasswordTextField.text!)
+        Setting.set(Config.Text.SETTING_ILMS_ACCOUNT, ilmsAccountTextField.text!)
+        Setting.set(Config.Text.SETTING_ILMS_PASSWORD, ilmsPasswordTextField.text!)
         clearCookies()
         let alert = UIAlertController(title: "帳號資訊儲存成功", message: "", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "好", style: UIAlertAction.Style.default, handler: nil))

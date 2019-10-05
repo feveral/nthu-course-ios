@@ -75,29 +75,29 @@ class Course: NSObject {
     
     static func jsonToCourse(_ json: JSON) -> Course {
         let roomTime = CourseRoomTime()
-        for subJson in json["course"]["roomTime"].array! {
+        for subJson in json["roomTime"].array! {
             roomTime.add(subJson["room"].string!, subJson["timeSlot"].string!)
         }
         return Course(
-            courseId: json["course"]["courseId"].string!,
-            chineseName: json["course"]["chineseName"].string!,
-            englishName: json["course"]["englishName"].string!,
-            credits: json["course"]["credits"].int!,
-            peopleLimit: json["course"]["peopleLimit"].string!,
-            newStudentReserved: json["course"]["newStudentReserved"].int!,
-            liberalTarget: json["course"]["liberalTarget"].string!,
-            liberalType: json["course"]["liberalType"].string!,
-            language: json["course"]["language"].string!,
-            remarks: json["course"]["remarks"].string!,
-            stopOpeningNotes: json["course"]["stopOpeningNotes"].string!,
+            courseId: json["courseId"].string!,
+            chineseName: json["chineseName"].string!,
+            englishName: json["englishName"].string!,
+            credits: json["credits"].int!,
+            peopleLimit: json["peopleLimit"].string!,
+            newStudentReserved: json["newStudentReserved"].int!,
+            liberalTarget: json["liberalTarget"].string!,
+            liberalType: json["liberalType"].string!,
+            language: json["language"].string!,
+            remarks: json["remarks"].string!,
+            stopOpeningNotes: json["stopOpeningNotes"].string!,
             roomTime: roomTime,
-            teacher: json["course"]["teacher"].string!,
-            blockStatement: json["course"]["blockStatement"].string!,
-            courseLimitStatement: json["course"]["courseLimitStatement"].string!,
-            firstSecondSpecialties: json["course"]["firstSecondSpecialties"].string!,
-            creditCourseCorrespondence: json["course"]["creditCourseCorrespondence"].string!,
-            cannotSignedStatement: json["course"]["cannotSignedStatement"].string!,
-            compulsoryStatement: json["course"]["compulsoryStatement"].string!
+            teacher: json["teacher"].string!,
+            blockStatement: json["blockStatement"].string!,
+            courseLimitStatement: json["courseLimitStatement"].string!,
+            firstSecondSpecialties: json["firstSecondSpecialties"].string!,
+            creditCourseCorrespondence: json["creditCourseCorrespondence"].string!,
+            cannotSignedStatement: json["cannotSignedStatement"].string!,
+            compulsoryStatement: json["compulsoryStatement"].string!
         )
     }
     
@@ -213,5 +213,16 @@ class Course: NSObject {
             print(error)
         }
         return []
+    }
+    
+    static func findInSemester(_ semester: CourseSemester) -> [Course] {
+        let allCourse = Course.findAllCourse()
+        var coursesInSemester: [Course] = []
+        for c in allCourse {
+            if (CourseSemester.isCourseInSemester(semester, c)) {
+                coursesInSemester.append(c)
+            }
+        }
+        return coursesInSemester
     }
 }

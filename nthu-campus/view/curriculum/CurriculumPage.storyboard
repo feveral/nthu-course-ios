@@ -8,16 +8,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--課表-->
+        <!--我的課表-->
         <scene sceneID="8Qe-3L-IR7">
             <objects>
                 <navigationController storyboardIdentifier="CurriculumPage" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uKP-3j-KAH" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="課表" id="3Bm-TU-cPx"/>
+                    <tabBarItem key="tabBarItem" title="我的課表" id="3Bm-TU-cPx"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mF4-DN-Y8t">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.84465640779999995" green="0.51457053419999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.84313725490196079" green="0.51372549019607838" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="deZ-vB-IIs" kind="relationship" relationship="rootViewController" id="CYP-Nb-aZv"/>

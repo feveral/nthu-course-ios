@@ -18,7 +18,7 @@ class CurriculumPageController: UIViewController, UICollectionViewDataSource, UI
     @IBOutlet weak var collectionViewFlowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var weekBar: UIStackView!
     let collectionStatus = CurriculumCollectionStatus()
-    let isLoading: Bool = false
+    var activityIndicatorView: NVActivityIndicatorView! = nil
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return collectionStatus.cellCount();
@@ -36,26 +36,31 @@ class CurriculumPageController: UIViewController, UICollectionViewDataSource, UI
         collectionStatus.clickCell(self, indexPath)
     }
     
-    func loadCourses() {
-        CourseService.getLatestSemester().done { courseSemester in
-            let allCourse = Course.findAllCourse()
-            for c in allCourse {
-                print(c.courseId, c.chineseName, c.credits, c.complete)
-            }
-            var coursesInSemester: [Course] = []
-            for c in allCourse {
-                if (CourseSemester.isCourseInSemester(courseSemester, c)) {
-                    coursesInSemester.append(c)
-                }
-            }
-            self.collectionStatus.setCourses(coursesInSemester)
-            self.collectionView.reloadData()
-        }.catch { error in
-            print(error)
+    func setLoadingStatus(_ isLoading: Bool) {
+        if (isLoading) {
+            self.activityIndicatorView.startAnimating()
+            UIView.animate(withDuration: 0.4, animations: {
+                self.activityIndicatorView.alpha = 1
+                self.collectionView.alpha = 0
+            }, completion: nil)
+        } else {
+            self.activityIndicatorView.stopAnimating()
+            UIView.animate(withDuration: 0.4, animations: {
+                self.collectionView.alpha = 1
+                self.activityIndicatorView.alpha = 0
+            }, completion: nil)
         }
     }
     
+    func loadCourses() {
+        let courseSemester = CourseSemester.find()
+        let coursesInSemester: [Course] = Course.findInSemester(courseSemester)
+        self.collectionStatus.setCourses(coursesInSemester)
+        self.collectionView.reloadData()
+    }
+    
     func fetchAndSaveCourseFromIlms() {
+        self.setLoadingStatus(true)
         let account = Setting.find(Config.Text.SETTING_ILMS_ACCOUNT)
         let password = Setting.find(Config.Text.SETTING_ILMS_PASSWORD)
         IlmsService.login(account, password)
@@ -64,10 +69,14 @@ class CurriculumPageController: UIViewController, UICollectionViewDataSource, UI
             return IlmsService.getCoursesIdAndNameList()
         } .then { courseIdAndNameList in
             return CourseService.getCourses(courseIdAndNameList)
-        } .done { courses in
+        } .then { courses -> Promise<CourseSemester> in
             Course.deleteAll()
             Course.saveMany(courses)
+            return CourseService.getLatestSemester()
+        } .done { courseSemester in
+            CourseSemester.save(courseSemester)
             self.loadCourses()
+            self.setLoadingStatus(false)
             Toast(text: "課表載入成功").show()
         } .catch { error in
             Toast(text: "課表載入失敗，請確認帳號密碼是否輸入正確\n或是否有連上網路").show()
@@ -91,6 +100,14 @@ class CurriculumPageController: UIViewController, UICollectionViewDataSource, UI
         }
     }
     
+    func initialLoadingView() {
+        let x = (UIScreen.main.bounds.width / 2) - 25
+        let y = (UIScreen.main.bounds.height / 2)
+        activityIndicatorView = (NVActivityIndicatorView(frame: CGRect(x: x, y:y, width: 50, height:50), type: NVActivityIndicatorType.orbit, color: #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)))
+        view.addSubview(activityIndicatorView)
+        setLoadingStatus(false)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionViewFlowLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -98,6 +115,7 @@ class CurriculumPageController: UIViewController, UICollectionViewDataSource, UI
         collectionViewFlowLayout.minimumInteritemSpacing = 0
         collectionViewFlowLayout.scrollDirection = .vertical
         initialWeekBar()
+        initialLoadingView()
         loadCourses()
     }
 }

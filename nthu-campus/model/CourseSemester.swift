@@ -27,4 +27,12 @@ class CourseSemester {
         }
         return false
     }
+    
+    static func save(_ semester: CourseSemester) {
+        Setting.set(Config.Text.SETTING_LATEST_SEMESTER, semester.get())
+    }
+    
+    static func find() -> CourseSemester {
+        return CourseSemester(Setting.find(Config.Text.SETTING_LATEST_SEMESTER))
+    }
 }

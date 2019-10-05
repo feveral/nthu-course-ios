@@ -38,38 +38,6 @@ class Setting {
         }
     }
     
-    static func setIlmsAccount(_ account: String) {
-        do {
-            let db = CourseDatabase.getDatabaseConnection()!
-            
-            if (Setting.isSettingExist(Config.Text.SETTING_ILMS_ACCOUNT)) {
-                let sql = "UPDATE \(Config.Text.SETTING) SET value='\(account)' WHERE key='\(Config.Text.SETTING_ILMS_ACCOUNT)' "
-                try db.execute(sql)
-            } else {
-                let sql = "INSERT INTO \(Config.Text.SETTING) VALUES ('\(Config.Text.SETTING_ILMS_ACCOUNT)', '\(account)')"
-                try db.execute(sql)
-            }
-        } catch {
-            print(error)
-        }
-    }
-    
-    static func setIlmsPassword(_ password: String) {
-        do {
-            let db = CourseDatabase.getDatabaseConnection()!
-            
-            if (Setting.isSettingExist(Config.Text.SETTING_ILMS_PASSWORD)) {
-                let sql = "UPDATE \(Config.Text.SETTING) SET value='\(password)' WHERE key='\(Config.Text.SETTING_ILMS_PASSWORD)' "
-                try db.execute(sql)
-            } else {
-                let sql = "INSERT INTO \(Config.Text.SETTING) VALUES ('\(Config.Text.SETTING_ILMS_PASSWORD)', '\(password)')"
-                try db.execute(sql)
-            }
-        } catch {
-            print(error)
-        }
-    }
-    
     static func isSettingExist(_ setting: String) -> Bool {
         do {
             let db = CourseDatabase.getDatabaseConnection()!
